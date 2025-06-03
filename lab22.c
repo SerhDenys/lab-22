@@ -9,15 +9,13 @@ int main() {
     FILE *input_file, *output_file;
     float matrix[ROWS][COLS];
     float result_vector[ROWS] = {0};
-    
-    // Відкриття вхідного файлу для читання
+
     input_file = fopen("vhid.txt", "r");
     if (input_file == NULL) {
         printf("Помилка відкриття файлу vhid.txt\n");
         return 1;
     }
-    
-    // Читання масиву з файлу
+
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             if (fscanf(input_file, "%f", &matrix[i][j]) != 1) {
@@ -28,8 +26,7 @@ int main() {
         }
     }
     fclose(input_file);
-    
-    // Обчислення суми негативних елементів для кожного рядка
+
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             if (matrix[i][j] < 0) {
@@ -37,15 +34,13 @@ int main() {
             }
         }
     }
-    
-    // Відкриття вихідного файлу для запису
+
     output_file = fopen("exit.txt", "w");
     if (output_file == NULL) {
         printf("Помилка створення файлу exit.txt\n");
         return 1;
     }
-    
-    // Запис результату у файл
+ 
     for (int i = 0; i < ROWS; i++) {
         fprintf(output_file, "%.2f\n", result_vector[i]);
     }
